@@ -1,3 +1,4 @@
+import { HabitItem } from "./components/ui/habit-item";
 import { dataHabits } from "./data/habits";
 
 export function App() {
@@ -16,8 +17,8 @@ export function App() {
           <div>
             <ul className="space-y-1">
               {dataHabits.map((habit) => (
-                <li>
-                  <p>{habit.text}</p>
+                <li key={habit.id}>
+                  <HabitItem habit={habit} />
                 </li>
               ))}
             </ul>

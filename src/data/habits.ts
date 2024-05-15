@@ -1,4 +1,10 @@
-export const dataHabits = [
+export type Habit = {
+  id: number;
+  text: string;
+  category: string;
+};
+
+export const dataHabits: Habit[] = [
   {
     id: 1,
     text: "Breakfast",
