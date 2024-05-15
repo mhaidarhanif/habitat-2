@@ -12,10 +12,10 @@ export function App() {
         <hr />
 
         <section className="space-y-2">
-          <h2 className="text-2xl">My Habits</h2>
+          <h2 className="text-2xl font-bold">My Habits</h2>
 
           <div>
-            <ul className="space-y-1">
+            <ul className="flex flex-col gap-2 divide-y divide-solid">
               {dataHabits.map((habit) => (
                 <li key={habit.id}>
                   <HabitItem habit={habit} />
