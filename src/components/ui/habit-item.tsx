@@ -8,7 +8,7 @@ export function HabitItem({ habit }: { habit: Habit }) {
   return (
     <div className="flex justify-between py-2">
       <div className="inline-flex gap-4">
-        <p className="text-xl">{habit.text}</p>
+        <p className="text-xl">{habit.title}</p>
         {timeStart && timeEnd && (
           <p>
             <time dateTime={timeStart}>{timeStart}</time>

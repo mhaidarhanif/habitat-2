@@ -1,6 +1,6 @@
 export type Habit = {
   id: number;
-  text: string;
+  title: string;
   category: string;
   isDaily: boolean;
   timeStart?: Date;
@@ -10,7 +10,7 @@ export type Habit = {
 export const dataHabits: Habit[] = [
   {
     id: 1,
-    text: "Breakfast",
+    title: "Breakfast",
     category: "Food",
     isDaily: true,
     timeStart: new Date("2000-01-01 06:00"),
@@ -18,19 +18,19 @@ export const dataHabits: Habit[] = [
   },
   {
     id: 2,
-    text: "Jogging",
+    title: "Jogging",
     category: "Sport",
     isDaily: false,
   },
   {
     id: 3,
-    text: "Lunch",
+    title: "Lunch",
     category: "Food",
     isDaily: true,
   },
   {
     id: 4,
-    text: "Dinner",
+    title: "Dinner",
     category: "Food",
     isDaily: true,
     timeStart: new Date("2000-01-01 20:00"),
@@ -38,7 +38,7 @@ export const dataHabits: Habit[] = [
   },
   {
     id: 5,
-    text: "Join community event",
+    title: "Join community event",
     category: "Social",
     isDaily: false,
   },
