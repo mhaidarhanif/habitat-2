@@ -4,7 +4,7 @@ import { HabitItem } from "./components/ui/habit-item";
 import { type Habit, dataHabits } from "./data/habits";
 
 export function App() {
-  const [habits] = useState(dataHabits);
+  const [habits, setHabits] = useState(dataHabits);
 
   const submitNewHabit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,7 +18,7 @@ export function App() {
       isDaily: false,
     };
 
-    console.log({ newHabit });
+    setHabits([...habits, newHabit]);
   };
 
   return (
@@ -33,8 +33,9 @@ export function App() {
             <label htmlFor="title">Title:</label>
             <input
               id="title"
-              type="text"
+              name="title"
               placeholder="New habit title..."
+              type="text"
               required
               className="p-1 border border-solid border-emerald-400"
             />
@@ -43,8 +44,9 @@ export function App() {
             <label htmlFor="category">Category:</label>
             <input
               id="category"
-              type="text"
+              name="category"
               placeholder="Category name"
+              type="text"
               required
               className="p-1 border border-solid border-emerald-400"
             />
