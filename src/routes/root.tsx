@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { HabitItem } from "./components/ui/habit-item";
-import { type Habit, dataHabits } from "./data/habits";
+import { HabitItem } from "../components/ui/habit-item";
+import { type Habit, dataHabits } from "../data/habits";
 
-export function App() {
+export function RootRoute() {
   const [habits, setHabits] = useState(dataHabits);
 
   const submitNewHabit = (event: React.FormEvent<HTMLFormElement>) => {
