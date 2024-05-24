@@ -4,14 +4,31 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { RootRoute } from "./routes/root";
 import { ErrorRoute } from "./routes/error";
+import { HabitsRoute } from "./routes/habits";
+import { HabitRoute } from "./routes/habit";
 
 import "./index.css";
+import { AboutRoute } from "./routes/about";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootRoute />,
     errorElement: <ErrorRoute />,
+    children: [
+      {
+        path: "/",
+        element: <HabitsRoute />,
+      },
+      {
+        path: "/about",
+        element: <AboutRoute />,
+      },
+      {
+        path: "/habits/:habitId",
+        element: <HabitRoute />,
+      },
+    ],
   },
 ]);
 
