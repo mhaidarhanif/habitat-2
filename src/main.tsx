@@ -9,7 +9,7 @@ import {
   loader as habitsLoader,
   action as habitsAction,
 } from "./routes/habits";
-import { HabitRoute } from "./routes/habit";
+import { HabitRoute, loader as habitLoader } from "./routes/habit";
 
 import "./index.css";
 import { AboutRoute } from "./routes/about";
@@ -33,6 +33,7 @@ const router = createBrowserRouter([
       {
         path: "/habits/:habitId",
         element: <HabitRoute />,
+        loader: habitLoader,
       },
     ],
   },
