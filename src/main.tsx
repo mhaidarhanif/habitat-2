@@ -4,7 +4,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { RootRoute } from "./routes/root";
 import { ErrorRoute } from "./routes/error";
-import { HabitsRoute, loader as habitsLoader } from "./routes/habits";
+import {
+  HabitsRoute,
+  loader as habitsLoader,
+  action as habitsAction,
+} from "./routes/habits";
 import { HabitRoute } from "./routes/habit";
 
 import "./index.css";
@@ -20,6 +24,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <HabitsRoute />,
         loader: habitsLoader,
+        action: habitsAction,
       },
       {
         path: "/about",

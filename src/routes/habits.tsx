@@ -1,8 +1,7 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Form, Link, useLoaderData } from "react-router-dom";
 
 import { HabitItem } from "../components/ui/habit-item";
-import { type Habit } from "../data/habits";
-import { getHabits } from "../storage/habits";
+import { createHabit, getHabits } from "../storage/habits";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function loader() {
@@ -10,27 +9,18 @@ export async function loader() {
   return { habits };
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
+export async function action() {
+  const habit = await createHabit();
+  return { habit };
+}
+
 export function HabitsRoute() {
   const { habits } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
 
-  const submitNewHabit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-
-    const newHabit: Habit = {
-      id: 100,
-      title: formData.get("title")?.toString() || "Untitled",
-      category: formData.get("category")?.toString() || "Uncategorized",
-      isDaily: false,
-    };
-
-    console.log({ newHabit });
-  };
-
   return (
     <div className="space-y-4">
-      <form method="post" onSubmit={submitNewHabit}>
+      <Form method="post">
         <div>
           <label htmlFor="title">Title:</label>
           <input
@@ -56,7 +46,7 @@ export function HabitsRoute() {
         <button type="submit" className="p-2 bg-emerald-500 rounded-sm">
           Add New Habit
         </button>
-      </form>
+      </Form>
 
       <hr />
 

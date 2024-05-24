@@ -16,8 +16,8 @@ export async function getHabits(query?: string) {
 
 export async function createHabit() {
   await fakeNetwork(``);
-  const habit = {
-    id: Math.random() * 100,
+  const newHabit = {
+    id: Math.floor(Math.random() * (10_000_000 - 1 + 1) + 1), // 1 to 100
     title: "Breakfast",
     category: "Food",
     isDaily: true,
@@ -27,9 +27,9 @@ export async function createHabit() {
   };
 
   const habits = await getHabits();
-  habits.unshift(habit);
-  await set(habits);
-  return habit;
+  const newHabits = [...habits, newHabit];
+  await set(newHabits);
+  return newHabit;
 }
 
 export async function getHabit(id: number) {
