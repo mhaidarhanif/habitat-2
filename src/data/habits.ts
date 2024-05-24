@@ -5,7 +5,7 @@ export type Habit = {
   isDaily: boolean;
   timeStart?: Date;
   timeEnd?: Date;
-  createdAt?: number;
+  createdAt?: Date;
 };
 
 export const dataHabits: Habit[] = [

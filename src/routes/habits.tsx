@@ -1,4 +1,10 @@
-import { Form, Link, useLoaderData } from "react-router-dom";
+import {
+  ActionFunctionArgs,
+  Form,
+  Link,
+  redirect,
+  useLoaderData,
+} from "react-router-dom";
 
 import { HabitItem } from "../components/ui/habit-item";
 import { createHabit, getHabits } from "../storage/habits";
@@ -10,9 +16,10 @@ export async function loader() {
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export async function action() {
-  const habit = await createHabit();
-  return { habit };
+export async function action({ request }: ActionFunctionArgs) {
+  const formData = await request.formData();
+  const habit = await createHabit(formData);
+  return redirect(`/habits/${habit.id}`);
 }
 
 export function HabitsRoute() {

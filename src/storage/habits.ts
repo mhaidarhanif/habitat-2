@@ -14,16 +14,17 @@ export async function getHabits(query?: string) {
   return habits.sort(sortBy("last", "createdAt"));
 }
 
-export async function createHabit() {
+export async function createHabit(formData: FormData) {
   await fakeNetwork(``);
-  const newHabit = {
+
+  const newHabit: Habit = {
     id: Math.floor(Math.random() * (10_000_000 - 1 + 1) + 1), // 1 to 100
-    title: "Breakfast",
-    category: "Food",
+    title: String(formData.get("title")),
+    category: String(formData.get("category")),
     isDaily: true,
     timeStart: new Date("2000-01-01 06:00"),
     timeEnd: new Date("2000-01-01 07:00"),
-    createdAt: Date.now(),
+    createdAt: new Date(),
   };
 
   const habits = await getHabits();
