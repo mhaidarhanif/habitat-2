@@ -21,7 +21,9 @@ export function RootRoute() {
             </ul>
           </nav>
         </header>
+
         <hr />
+
         <main className="space-y-4">
           <Outlet />
         </main>

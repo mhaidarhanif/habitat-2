@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 
 import { HabitItem } from "../components/ui/habit-item";
-import { type Habit, dataHabits } from "../data/habits";
+import { type Habit } from "../data/habits";
+import { getHabits } from "../storage/habits";
+
+// eslint-disable-next-line react-refresh/only-export-components
+export async function loader() {
+  const habits = await getHabits();
+  return { habits };
+}
 
 export function HabitsRoute() {
-  const [habits, setHabits] = useState(dataHabits);
+  const { habits } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
 
   const submitNewHabit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,7 +25,7 @@ export function HabitsRoute() {
       isDaily: false,
     };
 
-    setHabits([...habits, newHabit]);
+    console.log({ newHabit });
   };
 
   return (
@@ -57,13 +64,22 @@ export function HabitsRoute() {
         <h2 className="text-2xl font-bold">My Habits</h2>
 
         <div>
-          <ul className="flex flex-col gap-2 divide-y divide-solid">
-            {habits.map((habit) => (
-              <li key={habit.id}>
-                <HabitItem habit={habit} />
-              </li>
-            ))}
-          </ul>
+          {!habits || (habits.length <= 0 && <p>No habits found.</p>)}
+
+          {habits.length > 0 && (
+            <ul className="flex flex-col gap-2">
+              {habits.map((habit) => (
+                <li key={habit.id}>
+                  <Link
+                    to={`/habits/${habit.id}`}
+                    className="block hover:bg-stone-950"
+                  >
+                    <HabitItem habit={habit} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </section>
     </div>
